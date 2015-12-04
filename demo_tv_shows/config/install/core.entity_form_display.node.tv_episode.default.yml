@@ -6,7 +6,6 @@ dependencies:
     - field.field.node.tv_episode.field_episode_image
     - field.field.node.tv_episode.field_episode_number
     - field.field.node.tv_episode.field_related_season
-    - field.field.node.tv_episode.field_related_show
     - node.type.tv_episode
   module:
     - image

@@ -11,7 +11,7 @@ dependencies:
 id: views_block__episodes_block_1
 theme: bartik
 region: content
-weight: -2
+weight: 10
 provider: null
 plugin: 'views_block:episodes-block_1'
 settings:

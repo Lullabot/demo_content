@@ -106,7 +106,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: 'Season'
           exclude: false
           alter:
             alter_text: false
@@ -236,7 +236,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: 'Episode Title'
           exclude: false
           alter:
             alter_text: false

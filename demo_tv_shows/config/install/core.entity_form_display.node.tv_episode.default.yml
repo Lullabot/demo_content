@@ -50,7 +50,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: entity_reference_select
   field_related_show:
     weight: 4
     settings:
@@ -58,7 +58,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: entity_reference_select
   path:
     type: path
     weight: 10

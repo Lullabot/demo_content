@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_season
+    - node.type.tv_episode
+    - node.type.tv_season
+id: node.tv_episode.field_related_season
+field_name: field_related_season
+entity_type: node
+bundle: tv_episode
+label: 'Related Season'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      tv_season: tv_season
+    sort:
+      field: _none
+field_type: entity_reference

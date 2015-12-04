@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_season_number
+    - node.type.tv_season
+id: node.tv_season.field_season_number
+field_name: field_season_number
+entity_type: node
+bundle: tv_season
+label: 'Season Number'
+description: 'The number of this season.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

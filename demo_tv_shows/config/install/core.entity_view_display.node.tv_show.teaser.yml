@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.tv_show.body
+    - field.field.node.tv_show.field_catalog_id
+    - field.field.node.tv_show.field_ddc_id
+    - field.field.node.tv_show.field_image
+    - node.type.tv_show
+  module:
+    - image
+    - text
+    - user
+id: node.tv_show.teaser
+targetEntityType: node
+bundle: tv_show
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 1
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  field_image:
+    type: image
+    weight: 0
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+    third_party_settings: {  }
+  links:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_catalog_id: true
+  field_ddc_id: true

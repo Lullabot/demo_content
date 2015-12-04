@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.tv_episode.body
+    - field.field.node.tv_episode.field_episode_image
+    - field.field.node.tv_episode.field_episode_number
+    - field.field.node.tv_episode.field_related_season
+    - field.field.node.tv_episode.field_related_show
+    - node.type.tv_episode
+  module:
+    - user
+id: node.tv_episode.teaser
+targetEntityType: node
+bundle: tv_episode
+mode: teaser
+content:
+  field_episode_number:
+    type: number_unformatted
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_related_season:
+    type: entity_reference_label
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_related_show:
+    type: entity_reference_label
+    weight: 0
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  links:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_episode_image: true

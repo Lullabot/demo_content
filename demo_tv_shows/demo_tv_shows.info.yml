@@ -1,0 +1,50 @@
+name: 'Demo TV Shows'
+type: module
+core: 8.x
+package: Demo
+features:
+  bundle: demo
+  required:
+    - core.base_field_override.node.tv_episode.promote
+    - core.base_field_override.node.tv_episode.status
+    - core.base_field_override.node.tv_episode.title
+    - core.base_field_override.node.tv_season.promote
+    - core.base_field_override.node.tv_season.status
+    - core.base_field_override.node.tv_show.promote
+    - core.base_field_override.node.tv_show.status
+    - core.base_field_override.node.tv_show.title
+    - block.block.views_block__episodes_block_1
+    - node.type.tv_episode
+    - node.type.tv_season
+    - node.type.tv_show
+    - core.entity_form_display.node.tv_episode.default
+    - core.entity_form_display.node.tv_season.default
+    - core.entity_form_display.node.tv_show.default
+    - core.entity_view_display.node.tv_episode.default
+    - core.entity_view_display.node.tv_episode.teaser
+    - core.entity_view_display.node.tv_season.default
+    - core.entity_view_display.node.tv_season.teaser
+    - core.entity_view_display.node.tv_show.default
+    - core.entity_view_display.node.tv_show.teaser
+    - field.field.node.tv_episode.body
+    - field.field.node.tv_episode.field_episode_image
+    - field.field.node.tv_episode.field_episode_number
+    - field.field.node.tv_episode.field_related_season
+    - field.field.node.tv_episode.field_related_show
+    - field.field.node.tv_season.field_related_show
+    - field.field.node.tv_season.field_season_number
+    - field.field.node.tv_show.body
+    - field.field.node.tv_show.field_catalog_id
+    - field.field.node.tv_show.field_ddc_id
+    - field.field.node.tv_show.field_image
+    - field.storage.node.field_catalog_id
+    - field.storage.node.field_ddc_id
+    - field.storage.node.field_episode_image
+    - field.storage.node.field_episode_number
+    - field.storage.node.field_image
+    - field.storage.node.field_related_season
+    - field.storage.node.field_related_show
+    - field.storage.node.field_season_number
+    - views.view.episodes
+    - views.view.shows
+    - views.view.show_reference

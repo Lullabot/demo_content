@@ -1,0 +1,48 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.tv_show.body
+    - field.field.node.tv_show.field_catalog_id
+    - field.field.node.tv_show.field_ddc_id
+    - field.field.node.tv_show.field_image
+    - node.type.tv_show
+  module:
+    - image
+    - text
+    - user
+id: node.tv_show.default
+targetEntityType: node
+bundle: tv_show
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  field_catalog_id:
+    weight: 4
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_ddc_id:
+    weight: 3
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: large
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+hidden:
+  links: true

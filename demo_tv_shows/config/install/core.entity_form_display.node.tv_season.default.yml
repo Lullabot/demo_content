@@ -24,7 +24,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_select
+    type: entity_reference_autocomplete
   field_season_number:
     weight: 1
     settings:

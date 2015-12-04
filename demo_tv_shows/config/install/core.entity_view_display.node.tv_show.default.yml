@@ -3,8 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.node.tv_show.body
-    - field.field.node.tv_show.field_catalog_id
-    - field.field.node.tv_show.field_ddc_id
     - field.field.node.tv_show.field_image
     - node.type.tv_show
   module:

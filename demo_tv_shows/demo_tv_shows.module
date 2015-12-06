@@ -1,0 +1,86 @@
+<?php
+
+use Drupal\node\Entity\Node;
+
+/**
+ * Clean up content
+ *
+ * Clean up content created by devel generate so it makes more sense.
+ * Season and episode numbers should start with 1 and increment, and titles should include the numbers.
+ */
+function demo_tv_shows_update_content() {
+
+  $shows = demo_tv_shows_get_show_ids();
+  foreach ($shows as $show_id) {
+    $i = 1;
+    $seasons = demo_tv_shows_get_sorted_seasons($show_id);
+    foreach ($seasons as $season) {
+      // Renumber the seasons so they are unique and start with 1.
+      $season->set('field_season_number', $i);
+      // Retitle the season to show the number of the season.
+      $title = 'Season' . ' ' . $i;
+      $season->set('title', $title);
+      $season->save();
+      $episodes = demo_tv_shows_get_sorted_episodes($season->id());
+      $ii = 1;
+      foreach ($episodes as $episode) {
+        // Renumber the seasons so they are unique and start with 1.
+        $episode->set('field_episode_number', $ii);
+        // Retitle the episode to include the number of the season.
+        $title = 'S' . $i . '/E' . $ii . ': ' . $episode->label();
+        $episode->set('title', $title);
+        $episode->save();
+        $ii++;
+      }
+      $i++;
+    }
+  }
+}
+
+/**
+ * Load all the shows.
+ *
+ * @return array $nids: Array of show ids
+ */
+function demo_tv_shows_get_show_ids() {
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'tv_show')
+    //->range(0, 1)
+    ->sort('created', 'DESC');
+  $nids = $query->execute();
+  return $nids;
+}
+
+/**
+ * Load all the seasons for a show.
+ *
+ * @param $show_id: The id of the show.
+ * @return $nodes: Loaded node objects.
+ */
+function demo_tv_shows_get_sorted_seasons($show_id) {
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'tv_season')
+    ->condition('field_related_show.entity.nid', $show_id)
+    //->range(0, 1)
+    ->sort('field_season_number', 'ASC');
+  $nids = $query->execute();
+  $nodes = Node::loadMultiple($nids);
+  return $nodes;
+}
+
+/**
+ * Load all the episodes for a season.
+ *
+ * @param $season_id: The id of the season.
+ * @return $nodes: Loaded node objects.
+ */
+function demo_tv_shows_get_sorted_episodes($season_id) {
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'tv_episode')
+    ->condition('field_related_season.entity.nid', $season_id)
+    //->range(0, 1)
+    ->sort('field_episode_number', 'ASC');
+  $nids = $query->execute();
+  $nodes = Node::loadMultiple($nids);
+  return $nodes;
+}

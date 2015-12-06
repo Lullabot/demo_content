@@ -10,8 +10,8 @@
  */
 function demo_tv_shows_drush_command() {
   $commands = array();
-  $commands['demo-tv-shows-create-content'] = array(
-    'callback' => 'drush_demo_tv_shows_create_content',
+  $commands['demo-tv-shows-update-content'] = array(
+    'callback' => 'drush_demo_tv_shows_update_content',
     'description' => dt('Creates demo TV show, season, and episode content.'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'options' => array(),
@@ -21,12 +21,12 @@ function demo_tv_shows_drush_command() {
 }
 
 /**
- * Drush command callback for demo-tv-shows-create-content.
+ * Drush command callback for demo-tv-shows-update-content.
  *
  * @return bool
  */
-function drush_demo_tv_shows_create_content() {
-  // TODO
-  drush_log(dt('Created shows, seasons and episodes.'), 'success');
+function drush_demo_tv_shows_update_content() {
+  demo_tv_shows_update_content();
+  drush_log(dt('Updated shows, seasons and episodes.'), 'success');
   return TRUE;
 }

@@ -30,10 +30,11 @@ function demo_news_update_content() {
       $new_body = '';
 
       // Insert the default view of the image into the body.
-      $image = $news->field_news_image->view();
-      $image = $renderer->renderRoot($image);
-      $image = $image->__toString();
-      $new_body .= '<div class="embedded-image">' . $image . '</div>';
+      // Not working yet.
+      //$image = $news->field_news_image->view();
+      //$image = $renderer->renderRoot($image);
+      //$image = $image->__toString();
+      //$new_body .= '<div class="embedded-image">' . $image . '</div>';
 
       $paragraphs = explode('</p>', $body);
       $count = count($paragraphs);
@@ -46,7 +47,8 @@ function demo_news_update_content() {
         }
         $current++;
       }
-      $news->set('body', $new_body);
+      $news->body->value = $new_body;
+      $news->body->format = 'full_html';
       $news->save();
       return;
     }

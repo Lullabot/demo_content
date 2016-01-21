@@ -1,0 +1,69 @@
+<?php
+
+use Drupal\node\Entity\Node;
+use Drupal\demo_news\Plugin\EmbeddedContentManager;
+
+/**
+ * Clean up content
+ *
+ * Clean up content created by devel generate so the body includes embedded items.
+ */
+function demo_news_update_content() {
+
+  // Pull up all the news nodes that were previously generated.
+  $news = demo_news_get_nodes();
+
+  // User the renderer service to render content.
+  $renderer = \Drupal::service('renderer');
+
+  // Use the EmbeddedContent service to generate embedded content.
+  $embed_manager = \Drupal::service('plugin.manager.embedded_content');
+
+  foreach ($news as $news) {
+
+    // Get the default view of the body.
+    if ($body = $news->body->view()) {
+      $body = $renderer->renderRoot($body);
+      $body = $body->__toString();
+
+      // Insert embedded items into the body between paragraphs.
+      $new_body = '';
+
+      // Insert the default view of the image into the body.
+      $image = $news->field_news_image->view();
+      $image = $renderer->renderRoot($image);
+      $image = $image->__toString();
+      $new_body .= '<div class="embedded-image">' . $image . '</div>';
+
+      $paragraphs = explode('</p>', $body);
+      $count = count($paragraphs);
+      $current = 1;
+      foreach ($paragraphs as $paragraph) {
+        $new_body .= $paragraph . '</p>';
+        if ($count > $current) {
+          $item = $embed_manager->getRandomItem();
+          $new_body .= '<div class="embedded-item">' . $item . '</div>';
+        }
+        $current++;
+      }
+      $news->set('body', $new_body);
+      $news->save();
+      return;
+    }
+  }
+}
+
+/**
+ * Load all the news nodes.
+ *
+ * @return array $nids: Array of news nodes.
+ */
+function demo_news_get_nodes() {
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'news')
+    ->range(0, 1)
+    ->sort('created', 'DESC');
+  $nids = $query->execute();
+  $nodes = Node::loadMultiple($nids);
+  return $nodes;
+}

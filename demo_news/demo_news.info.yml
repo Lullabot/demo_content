@@ -1,0 +1,6 @@
+name: 'Demo News'
+type: module
+core: 8.x
+package: Demo
+dependencies:
+  - devel_generate

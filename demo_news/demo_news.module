@@ -11,7 +11,7 @@ use Drupal\demo_news\Plugin\EmbeddedContentManager;
 function demo_news_update_content() {
 
   // Pull up all the news nodes that were previously generated.
-  $news = demo_news_get_nodes();
+  $news_nodes = demo_news_get_nodes();
 
   // User the renderer service to render content.
   $renderer = \Drupal::service('renderer');
@@ -19,8 +19,9 @@ function demo_news_update_content() {
   // Use the EmbeddedContent service to generate embedded content.
   $embed_manager = \Drupal::service('plugin.manager.embedded_content');
 
-  foreach ($news as $news) {
+  foreach ($news_nodes as $news) {
 
+   
     // Get the default view of the body.
     if ($body = $news->body->view()) {
       $body = $renderer->renderRoot($body);
@@ -50,7 +51,6 @@ function demo_news_update_content() {
       $news->body->value = $new_body;
       $news->body->format = 'full_html';
       $news->save();
-      return;
     }
   }
 }
@@ -63,7 +63,7 @@ function demo_news_update_content() {
 function demo_news_get_nodes() {
   $query = \Drupal::entityQuery('node')
     ->condition('type', 'news')
-    ->range(0, 1)
+    ->range(0, 50)
     ->sort('created', 'DESC');
   $nids = $query->execute();
   $nodes = Node::loadMultiple($nids);

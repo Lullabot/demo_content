@@ -1,5 +1,7 @@
 #Demo TV Show Content
 
+** NOTE: This module is not currently functional **
+
 Enable this module, then created content by doing the following the command line:
 
 ```
